@@ -3,17 +3,17 @@ import matplotlib.pyplot as plt
 
 
 def func(s):
-    data = s.split(',')[1:]
+    data = s.split(',')
     return data
 
 f = requests.get("https://raw.githubusercontent.com/dm-fedorov/python_basic/master/data/opendata.stat")
 lst = list(map(func, str(f.text).split('\n')[1:]))
-
+ 
 pens = []
 for s in lst:
     try:
-        if s[0] == 'Забайкальский край' and s[1][:4] == '2018':
-            pens.append([s[1], int(s[2])])
+        if s[0] == 'Средняя пенсия' and s[1] == 'Забайкальский край' and s[2][:4] == '2018':
+            pens.append([s[2], int(s[3])])
     except:
         pass
 
@@ -33,7 +33,7 @@ for date in sorted_dates:
     averaged_pens.append([date, round(average)])
 
 summ = sum([i[1] for i in averaged_pens])
-print(f"Срендий размер пенсии в 2018: {summ/len(averaged_pens):.2f}")
+print(f"Срендий размер пенсии в 2018: {summ/len(averaged_pens)}")
 
 
 dates = [item[0] for item in averaged_pens]
