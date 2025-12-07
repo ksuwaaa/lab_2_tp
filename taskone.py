@@ -17,27 +17,12 @@ for s in lst:
     except:
         pass
 
-date_groups = {}
-
-for date, value in pens:
-    if date not in date_groups:
-        date_groups[date] = []
-    date_groups[date].append(value)
-averaged_pens = []
-sorted_dates = sorted(date_groups.keys())
-for date in sorted_dates:
-    values = date_groups[date]
-    count = len(values)
-    total = sum(values)
-    average = total / count
-    averaged_pens.append([date, round(average)])
-
-summ = sum([i[1] for i in averaged_pens])
-print(f"Срендий размер пенсии в 2018: {summ/len(averaged_pens)}")
+summ = sum([i[1] for i in pens])
+print(f"Срендий размер пенсии в 2018: {summ/len(pens)}")
 
 
-dates = [item[0] for item in averaged_pens]
-values = [item[1] for item in averaged_pens]
+dates = [item[0] for item in pens]
+values = [item[1] for item in pens]
 
 
 plt.figure(figsize=(12, 6))
